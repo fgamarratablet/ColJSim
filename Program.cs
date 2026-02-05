@@ -46,6 +46,11 @@ app.MapPost("/SCLM-API/api/AuthSclmPlus", (AuthRequest request) =>
     issuedTokens[token] = user;
 
     return Results.Ok(new AuthResponse(
+        user,
+        "Bearer",
+        200,
+        "Usuario autenticado: Se ha generado el token correctamente",
+        token
         User: user,
     var token = $"sclm-{Guid.NewGuid()}";
     issuedTokens[token] = request.User;
@@ -102,6 +107,9 @@ app.MapPost("/SCLM-API/api/enviarReporteMET", (HttpRequest httpRequest, ReporteR
     var radicado = Interlocked.Increment(ref radicadoCounter);
 
     return Results.Ok(new ReporteResponse(
+        200,
+        radicado,
+        "Se ha recibido el reporte correctamente"
         StatusCode: 200,
         Radicado: radicado,
         Descripcion: "Se ha recibido el reporte correctamente"
@@ -120,7 +128,7 @@ app.MapFallback(() => Results.Json(new ErrorResponse(
     Descripcion: "Ruta no encontrada"
 ), statusCode: 404));
 
-app.Run("http://0.0.0.0:8888");
+app.Run();
 
 static Dictionary<string, string> LoadUsers(string filePath)
 {
