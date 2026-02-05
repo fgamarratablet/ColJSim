@@ -47,6 +47,11 @@ app.MapPost("/SCLM-API/api/AuthSclmPlus", (AuthRequest request) =>
 
     return Results.Ok(new AuthResponse(
         User: user,
+    var token = $"sclm-{Guid.NewGuid()}";
+    issuedTokens[token] = request.User;
+
+    return Results.Ok(new AuthResponse(
+        User: request.User,
         TypeToken: "Bearer",
         StatusCode: 200,
         Descripcion: "Usuario autenticado: Se ha generado el token correctamente",
