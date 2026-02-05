@@ -55,6 +55,15 @@ Si credenciales incorrectas, responde `statusCode: 401` con:
 {
   "statusCode": 401,
   "descripcion": "1003 - Usuario no autenticado: Las credenciales del portal MET son inválidas."
+Respuesta de ejemplo:
+
+```json
+{
+  "user": "Fernando",
+  "typeToken": "Bearer",
+  "statusCode": 200,
+  "descripcion": "Usuario autenticado: Se ha generado el token correctamente",
+  "token": "sclm-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
 
@@ -80,3 +89,16 @@ Body:
 Si contrato válido (según `contracts.txt`), responde `statusCode: 200` con `radicado`.
 
 Si contrato inválido, responde `statusCode: 401` con descripción del error.
+  "Contrato": "CXXXX"
+}
+```
+
+Respuesta de ejemplo:
+
+```json
+{
+  "statusCode": 200,
+  "radicado": 1,
+  "descripcion": "Se ha recibido el reporte correctamente"
+}
+```
